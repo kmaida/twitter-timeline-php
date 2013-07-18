@@ -129,8 +129,8 @@
 		$retweetURL = 'https://twitter.com/intent/retweet?tweet_id=' . $id;
 		$favoriteURL = 'https://twitter.com/intent/favorite?tweet_id=' . $id;
 		
-		?>
-			
+?>
+
 			<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' retweet'; ?>">
 				<div class="tweet-info">
 					<div class="user-info">
@@ -155,12 +155,7 @@
 				</div>
 			</li>
 			
-		<?php 
-		
-		if ($tweet[in_reply_to_screen_name]) {
-			echo 'in reply to ' . $tweet[in_reply_to_screen_name] . ' - SEE CONVERSATION<br>';
-		}		
-	}
+<?php }
 	
 	echo '</ul>';
 	
