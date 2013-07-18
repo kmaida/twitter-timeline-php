@@ -2,7 +2,7 @@
 
 var twitter = {
 
-	$list: $('#tweetList'),
+	$list: $('#tweet-list'),
 	
 	init: function() {
 		twitter.retweet();

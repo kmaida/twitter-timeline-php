@@ -3,6 +3,35 @@ body {
 	margin: 0 auto;
 	width: 75%;
 }
-ul {
+.tweet-list {
 	list-style: outside none;
+}
+.tweet-list li {
+	border-bottom: 1px solid #ccc;
+	padding: 10px 0;
+}
+.user-info {
+	float: left;
+}
+.user-avatar {
+	float: left;
+	padding-right: 10px;
+}
+.user-account {
+	margin: 3px 0 0;
+	overflow: hidden;
+}
+.user-name {
+	display: block;
+}
+.tweet-date {
+	float: right;
+}
+.tweet-text {
+	clear: both;
+	margin: 0;
+	padding: 10px 0;
+}
+.in-reply-to {
+	display: block;
 }

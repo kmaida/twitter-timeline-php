@@ -99,7 +99,7 @@
 		return $date;
 	}
 	
-	echo '<ul id="tweetList" class="tweetList">';
+	echo '<ul id="tweet-list" class="tweet-list">';
 	
 	// The Loop
 	foreach ($twitter_data as $tweet) {
@@ -134,7 +134,7 @@
 			<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' retweet'; ?>">
 				<div class="tweet-info">
 					<div class="user-info">
-						<img class="avatar" src="<?php echo $userAvatarURL; ?>">
+						<img class="user-avatar" src="<?php echo $userAvatarURL; ?>">
 						<p class="user-account">
 							<strong class="user-name"><?php echo $userName; ?></strong>
 							<a class="user-screenName" href="<?php echo $userAccountURL; ?>">@<?php echo $userScreenName; ?></a>
@@ -146,7 +146,7 @@
 				</div>
 				<blockquote class="tweet-text">
 					<?php echo $formattedTweet; ?>
-					<?php if ($isReply) echo '<a class="in-reply-to" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '">In reply to...</a>'; ?>
+					<?php if ($isReply) echo '<a class="in-reply-to" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '"><em>In reply to...</em></a>'; ?>
 				</blockquote>
 				<div class="tweet-actions">
 					<a class="action-reply" href="<?php echo $replyURL; ?>">Reply</a>
