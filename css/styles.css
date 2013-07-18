@@ -8,7 +8,13 @@ body {
 }
 .tweet-list li {
 	border-bottom: 1px solid #ccc;
-	padding: 10px 0;
+	padding: 10px;
+}
+.tweet-list .is-retweet {
+	background: #e8ffea;
+}
+.tweet-list .is-reply {
+	background:#fde7ff;
 }
 .user-info {
 	float: left;
@@ -34,4 +40,8 @@ body {
 }
 .in-reply-to {
 	display: block;
+}
+.visitor-retweeted,
+.visitor-favorited {
+	color: #999;
 }

@@ -131,7 +131,7 @@
 		
 ?>
 			
-			<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' retweet'; ?>">
+			<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' is-retweet'; if ($isReply) echo ' is-reply'; ?>">
 				<div class="tweet-info">
 					<div class="user-info">
 						<img class="user-avatar" src="<?php echo $userAvatarURL; ?>">
