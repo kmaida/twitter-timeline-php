@@ -130,7 +130,7 @@
 		$favoriteURL = 'https://twitter.com/intent/favorite?tweet_id=' . $id;
 		
 ?>
-
+			
 			<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' retweet'; ?>">
 				<div class="tweet-info">
 					<div class="user-info">
@@ -159,5 +159,5 @@
 	
 	echo '</ul>';
 	
-	echo $json;
+	// echo $json;
 ?>
