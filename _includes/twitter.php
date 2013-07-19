@@ -1,18 +1,14 @@
 <?php
 
 /**
- * twitter-timeline-php : Twitter API 1.1 timeline implemented with PHP, a little JavaScript, and web intents
+ * twitter-timeline-php : Twitter API 1.1 user timeline implemented with PHP, a little JavaScript, and web intents
  * 
  * @package  twitter-timeline-php
  * @author   Kim Maida <contact@kim-maida.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     http://github.com/kimmaida/twitter-timeline-php
- * @credits	 Thanks to James Mallison for the OAuth part <https://github.com/J7mbo/twitter-api-php>
+ * @link     http://github.com/kmaida/twitter-timeline-php
  *
 **/
-
-	ini_set('display_errors', 1);
-	require_once('_utils/TwitterAPIExchange.php');
 	
 ############################################################### 
 	## SETTINGS
@@ -34,39 +30,19 @@
 	$tokens = '_utils/tokens.php';
 	is_file($tokens) AND include $tokens;
 	
-###############################################################
-	## MAKE REQUEST
+	require_once('_utils/twitter-api-oauth.php');
 	
-	// Initialize GET request
+###############################################################
+	## MAKE GET REQUEST
+	
 	$getfield = '?screen_name=' . $twitterUsername . '&count=' . $tweetCount;
-	$requestMethod = 'GET';
-	$twitter = new TwitterAPIExchange($settings);
+	$twitter = new TwitterAPITimeline($settings);
 	
 	$json = $twitter->setGetfield($getfield)	// Note: Set the GET field BEFORE calling buildOauth()
 	             	->buildOauth($url, $requestMethod)
 				 	->performRequest();
 				 			
 	$twitter_data = json_decode($json, true);	// Create an array with the fetched JSON data
-	
-	/* UNCOMMENT THE FOLLOWING TO USE POST REQUEST
-	
-	// Initialize POST request
-	$requestMethod = 'POST';
-	
-	// POST fields required by the URL above. See relevant docs as above
-	$postfields = array(
-	    '[key]' => '[value]', 
-	    '[key]' => '[value]'
-	);
-	
-	// Perform a POST request and echo the response
-	$twitter = new TwitterAPIExchange($settings);
-	$json = $twitter->buildOauth($url, $requestMethod)
-	             	->setPostfields($postfields)
-				 	->performRequest();
-	$twitter_data = json_decode($json, true);	// Create an array with the fetched JSON data
-	
-	*/
 	
 ############################################################### 	
 	## DO SOMETHING WITH THE DATA
