@@ -75,17 +75,7 @@
 			    }
 		    }
 		 
-		    $print = "$count{$unit}";
-		 
-		    if ($i + 1 < $j) {
-			    $seconds2 = $timeUnits[$i + 1][0];
-			    $unit2 = $timeUnits[$i + 1][1];
-			 
-			    if (($count2 = floor(($since - ($seconds * $count)) / $seconds2)) != 0) {
-			        $print .= " $count2{$unit2}";
-			    }
-		    }
-		    return $print;
+		    return = "$count{$unit}";
 		    
 		# If it's been a day or more, return the date: day (without leading 0) and 3-letter month
 	    } else {
