@@ -33,12 +33,17 @@ var twitter = {
 	openStatus: function() {
 		// open status permalinks in a popup window
 		$('.tweet-date, .in-reply-to').on('click', function(e) {
+			var height = 450,
+				width = 585,
+				top = (screen.height / 2) - (height / 2)
+				left = (screen.width / 2) - (width / 2);
+			
 			e.preventDefault();
 			
 			window.open(
 				this.href,
 				'tweetStatus',
-				'height=450, width=585, toolbar=0, status=0'
+				'height=' + height + ', width=' + width + ', toolbar=0, status=0, top=' + top + ', left=' + left
 			);
 		});
 	}
