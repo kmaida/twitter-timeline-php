@@ -3,11 +3,11 @@
 /**
  * twitter-timeline-php : Twitter API 1.1 user timeline implemented with PHP, a little JavaScript, and web intents
  * 
- * @package  twitter-timeline-php
- * @author   Kim Maida <contact@kim-maida.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     http://github.com/kmaida/twitter-timeline-php
- * @credits	 Thank you to <http://viralpatel.net/blogs/twitter-like-n-min-sec-ago-timestamp-in-php-mysql/> for the kickstart on the "time ago" calculations 
+ * @package		twitter-timeline-php
+ * @author		Kim Maida <contact@kim-maida.com>
+ * @license		http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @link		http://github.com/kmaida/twitter-timeline-php
+ * @credits		Thank you to <http://viralpatel.net/blogs/twitter-like-n-min-sec-ago-timestamp-in-php-mysql/> for base for "time ago" calculations 
  *
 **/
 	
@@ -16,10 +16,10 @@
 	
 	// Set access tokens <https://dev.twitter.com/apps/>
 	$settings = array(
-	    'oauth_access_token' => "",
-	    'oauth_access_token_secret' => "",
-	    'consumer_key' => "",
-	    'consumer_secret' => ""
+		 'oauth_access_token' => "",
+		 'oauth_access_token_secret' => "",
+		 'consumer_key' => "",
+		 'consumer_secret' => ""
 	);
 	
 	// Set API request URL and timeline variables if needed <https://dev.twitter.com/docs/api/1.1>
@@ -41,7 +41,7 @@
 	$twitter = new TwitterAPITimeline($settings);
 	
 	$json = $twitter->setGetfield($getfield)	// Note: Set the GET field BEFORE calling buildOauth()
-	             	->buildOauth($url, $requestMethod)
+				  	->buildOauth($url, $requestMethod)
 				 	->performRequest();
 				 			
 	$twitter_data = json_decode($json, true);	// Create an array with the fetched JSON data
@@ -54,33 +54,33 @@
 	function timeAgo($dateStr) {
 		$timestamp = strtotime($dateStr);	 
 		$day = 60 * 60 * 24;
-	    $today = time(); // current unix time
-	    $since = $today - $timestamp;
-	    
-	    # If it's been less than 1 day since the tweet was posted, figure out how long ago in seconds/minutes/hours
-	    if (($since / $day) < 1) {
-	    
-	    	$timeUnits = array(
-			    array(60 * 60, 'h'),
-			    array(60, 'm'),
-			    array(1, 's')
-		    );
-		    
-		    for ($i = 0, $j = count($timeUnits); $i < $j; $i++) { 
-			    $seconds = $timeUnits[$i][0];
-			    $unit = $timeUnits[$i][1];
-			 
-			    if (($count = floor($since / $seconds)) != 0) {
-			        break;
-			    }
-		    }
+		$today = time(); // current unix time
+		$since = $today - $timestamp;
 		 
-		    return "$count{$unit}";
-		    
+		 # If it's been less than 1 day since the tweet was posted, figure out how long ago in seconds/minutes/hours
+		 if (($since / $day) < 1) {
+		 
+		 	$timeUnits = array(
+				   array(60 * 60, 'h'),
+				   array(60, 'm'),
+				   array(1, 's')
+			  );
+			  
+			  for ($i = 0, $j = count($timeUnits); $i < $j; $i++) { 
+				   $seconds = $timeUnits[$i][0];
+				   $unit = $timeUnits[$i][1];
+			 
+				   if (($count = floor($since / $seconds)) != 0) {
+					   break;
+				   }
+			  }
+		 
+			  return "$count{$unit}";
+			  
 		# If it's been a day or more, return the date: day (without leading 0) and 3-letter month
-	    } else {
-		    return date('j M', strtotime($dateStr));
-	    }   
+		 } else {
+			  return date('j M', strtotime($dateStr));
+		 }	 
 	}
 	
 //-------------------------------------------------------------- Format the tweet text (links, hashtags, mentions)
