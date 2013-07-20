@@ -11,28 +11,28 @@ var twitter = {
 	},
 	
 	retweet: function() {
-		// add a class to the Retweet link when a visitor successfully retweets a tweet
+		// add a class to the status li when a visitor successfully retweets a tweet
 		twttr.events.bind('retweet', function(e) {
 			var retweeted_tweet_id = e.data.source_tweet_id,
-				$retweetBtn = twitter.$list.find('#tweetid-' + retweeted_tweet_id).find('.action-retweet');
+				$thisTweet = twitter.$list.find('#tweetid-' + retweeted_tweet_id);
 			
-			$retweetBtn.addClass('visitor-retweeted');
+			$thisTweet.addClass('visitor-retweeted');
 		});
 	},
 	
 	favorite: function() {
-		// add a class to the Favorite link when a visitor successfully favorites a tweet
+		// add a class to the status li when a visitor successfully favorites a tweet
 		twttr.events.bind('favorite', function(event) {
 			var favorited_tweet_id = event.data.tweet_id,
-				$favoriteBtn = twitter.$list.find('#tweetid-' + favorited_tweet_id).find('.action-favorite');
+				$thisTweet = twitter.$list.find('#tweetid-' + favorited_tweet_id);
 			
-			$favoriteBtn.addClass('visitor-favorited');
+			$thisTweet.addClass('visitor-favorited');
 		});
 	},
 	
 	openStatus: function() {
 		// open status permalinks in a popup window
-		$('.tweet-date, .in-reply-to').on('click', function(e) {
+		$('.permalink-status').on('click', function(e) {
 			var height = 450,
 				width = 585,
 				top = (screen.height / 2) - (height / 2)

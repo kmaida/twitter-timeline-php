@@ -39,4 +39,57 @@ Here is a simple [demo Twitter Timeline](http://dev.kim-maida.com/twitter). The 
 
 ##How to Use
 
-*Instructions coming soon*
+###Create a Twitter app
+
+Sign into [Twitter Developers](https://dev.twitter.com/apps) and click the **"Create a new application"** button.
+
+Fill in your application's name, description, and website. Agree to the TOS and proceed to the next step.
+
+Click the **"Create my access token"** button.
+
+Once the token has been generated, the OAuth tab should list your **Consumer key**, **Consumer secret**, **Access token**, and **Access token secret**.
+
+###Add twitter-api-oauth.php to your site
+
+There is no need to modify this file if you are using GET requests, just make sure it is included and that **twitter.php** references its path properly.
+
+###Add twitter.php to your site
+
+Include the **twitter.php** file where you'd like your timeline to show up in your site.
+
+	<?php include_once('path_to/twitter.php'); ?>
+
+Edit the **twitter.php** *Settings* section to define your Twitter app's **Consumer key**, **Consumer secret**, **Access token**, **Access token secret**.
+
+	$settings = array(
+		'consumer_key' => "",
+		'consumer_secret' => "",
+		'oauth_access_token' => "",
+		'oauth_access_token_secret' => ""
+	);
+
+The default [API URL](https://dev.twitter.com/docs/api/1.1) is the user timeline. (Changing this will require the loop to be modified for whatever other JSON you'd like to use.)
+
+Set your **Twitter username** and **tweet count** to display that number of tweets in your timeline.
+
+	$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+	$twitterUsername = "";
+	$tweetCount = 3;
+
+Make sure that the path to the OAuth class is correct for your site's setup:
+
+	require_once('path_to/twitter-api-oauth.php');
+	
+The last section of **twitter.php** is the loop that displays each timeline status. By default, it obeys the [Developer Display Requirements](https://dev.twitter.com/terms/display-requirements) laid out by Twitter. Modify the formatting functions and loop to fit your needs.
+
+###Add the JavaScript to your site
+
+Include JavaScript to support reply/retweet/favorite links opening in popup dialog boxes and event handlers for successful interactions.
+
+	<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+	<script type="text/javascript" src="PATH_TO/jquery.js"></script>
+	<script type="text/javascript" src="PATH_TO/twitter.js"></script>
+	
+###Add CSS (optional)
+
+The CSS is very basic. Include it if you'd like a small starter for adding your own styles.

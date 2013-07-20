@@ -146,7 +146,11 @@
 		$favoriteURL = 'https://twitter.com/intent/favorite?tweet_id=' . $id;	
 ?>
 				
-		<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' is-retweet'; if ($isReply) echo ' is-reply'; ?>">
+		<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php 
+				if ($isRetweet) echo ' is-retweet'; 
+				if ($isReply) echo ' is-reply'; 
+				if ($tweet['retweeted']) echo ' visitor-retweeted';
+				if ($tweet['favorited']) echo ' visitor-favorited'; ?>">
 			<div class="tweet-info">
 				<div class="user-info">
 					<a class="user-avatar-link" href="<?php echo $userAccountURL; ?>">
@@ -157,7 +161,7 @@
 						<a class="user-screenName" href="<?php echo $userAccountURL; ?>">@<?php echo $userScreenName; ?></a>
 					</p>
 				</div>
-				<a class="tweet-date" href="<?php echo $statusURL; ?>" target="_blank">
+				<a class="tweet-date permalink-status" href="<?php echo $statusURL; ?>" target="_blank">
 					<?php echo $date; ?>
 				</a>
 			</div>
@@ -167,7 +171,7 @@
 				 
 					if ($isReply) {
 						echo '
-							<a class="in-reply-to" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '">
+							<a class="in-reply-to permalink-status" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '">
 								In reply to...
 							</a>
 						';
@@ -186,8 +190,8 @@
 			</blockquote>
 			<div class="tweet-actions">
 				<a class="action-reply" href="<?php echo $replyURL; ?>">Reply</a>
-				<a class="action-retweet<?php if ($tweet['retweeted']) echo ' visitor-retweeted'; ?>" href="<?php echo $retweetURL; ?>">Retweet</a>
-				<a class="action-favorite<?php if ($tweet['favorited']) echo ' visitor-favorited'; ?>" href="<?php echo $favoriteURL; ?>">Favorite</a>
+				<a class="action-retweet" href="<?php echo $retweetURL; ?>">Retweet</a>
+				<a class="action-favorite" href="<?php echo $favoriteURL; ?>">Favorite</a>
 			</div>
 		</li>	
 			

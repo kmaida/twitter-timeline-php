@@ -46,10 +46,10 @@ a:hover {
 }
 .in-reply-to,
 .retweeter {
-	
+	font-style: italic;
 }
-.visitor-retweeted,
-.visitor-favorited {
+.visitor-retweeted .action-retweet,
+.visitor-favorited .action-favorite {
 	color: #999;
 }
 footer {
