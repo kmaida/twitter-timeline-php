@@ -11,7 +11,7 @@ A while ago, Twitter did away with that whole *blogger.js* business that enabled
 
 It now takes a significant amount of effort to get a styled / customized timeline on your own site. Wading through OAuth and parsing heaps of JSON data aren't on some peoples' to-do lists when all they want is a couple of tweets to appear on their homepage. 
 
-Many creatives bite the bullet and accept the embedded tweets and timeline widgets that Twitter supplies. Others aren't so willing to surrender the ability creatively style tweets, and they start learning about the Twitter API.
+Many creatives bite the bullet and accept the embedded tweets and timeline widgets that Twitter supplies. Others aren't so willing to surrender the ability to style tweets creatively, and they start learning about the Twitter API.
 
 This framework exists to lower that barrier to entry. It's not *blogger.js*-simple anymore, but it's a place to start.
 
@@ -25,16 +25,15 @@ This framework exists to lower that barrier to entry. It's not *blogger.js*-simp
 * Detection of whether a tweet is a retweet or reply and appropriate added functionality
 * Dynamic application of CSS classes when a visitor retweets or favorites
 
-##Demo
-
-Here is a simple [Demo Timeline](http://dev.kim-maida.com/twitter).
-
-
 ## Requirements
 
 * LAMP stack with PHP
 * cURL enabled
 
+##Demo
+
+Here is a simple [demo Twitter Timeline](http://dev.kim-maida.com/twitter). The demo is identical to the files contained in this repository. A few very basic styles have been included to follow the [Developer Display Requirements](https://dev.twitter.com/terms/display-requirements).
+
 ##How to Use
 
-*Coming soon*
+*Instructions coming soon*
