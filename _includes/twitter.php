@@ -118,6 +118,7 @@
 	}
 	
 //-------------------------------------------------------------- Timeline HTML output
+	# This output markup adheres to the Twitter developer display requirements (https://dev.twitter.com/terms/display-requirements)
 	
 	# Open the timeline list
 	echo '<ul id="tweet-list" class="tweet-list">';
@@ -154,7 +155,7 @@
 		$retweetURL = 'https://twitter.com/intent/retweet?tweet_id=' . $id;
 		$favoriteURL = 'https://twitter.com/intent/favorite?tweet_id=' . $id;	
 ?>
-			<!-- This output markup adheres to the Twitter developer display requirements (https://dev.twitter.com/terms/display-requirements) -->	
+				
 			<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' is-retweet'; if ($isReply) echo ' is-reply'; ?>">
 				<div class="tweet-info">
 					<div class="user-info">

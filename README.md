@@ -25,6 +25,11 @@ This framework exists to lower that barrier to entry. It's not *blogger.js*-simp
 * Detection of whether a tweet is a retweet or reply and appropriate added functionality
 * Dynamic application of CSS classes when a visitor retweets or favorites
 
+##Demo
+
+Here is a simple [Demo Timeline](http://dev.kim-maida.com/twitter).
+
+
 ## Requirements
 
 * LAMP stack with PHP
