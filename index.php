@@ -20,6 +20,11 @@
 	
 	<?php include_once('_includes/twitter.php'); ?>
 	
+	<footer>
+		<a href="https://github.com/kmaida/twitter-timeline-php">twitter-timeline-php</a> on <a href="http://github.com">GitHub</a><br>
+		GNU Public License
+	</footer>
+	
 	<!-- jQuery library -->
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	<!-- Optional: include //code.jquery.com/jquery-migrate-1.2.1.js if IE6/7/8 support is needed -->

@@ -31,6 +31,7 @@
 	$tokens = '_utils/tokens.php';
 	is_file($tokens) AND include $tokens;
 	
+	// Require the OAuth class
 	require_once('_utils/twitter-api-oauth.php');
 	
 ###############################################################
@@ -56,7 +57,7 @@
 	    $today = time(); // current unix time
 	    $since = $today - $timestamp;
 	    
-	    // If it's been less than 1 day since the tweet was posted, figure out how long ago in seconds/minutes/hours
+	    # If it's been less than 1 day since the tweet was posted, figure out how long ago in seconds/minutes/hours
 	    if (($since / $day) < 1) {
 	    
 	    	$timeUnits = array(
@@ -67,28 +68,27 @@
 		    
 		    for ($i = 0, $j = count($timeUnits); $i < $j; $i++) { 
 			    $seconds = $timeUnits[$i][0];
-			    $name = $timeUnits[$i][1];
+			    $unit = $timeUnits[$i][1];
 			 
 			    if (($count = floor($since / $seconds)) != 0) {
 			        break;
 			    }
 		    }
 		 
-		    $print = "$count{$name}";
+		    $print = "$count{$unit}";
 		 
 		    if ($i + 1 < $j) {
 			    $seconds2 = $timeUnits[$i + 1][0];
-			    $name2 = $timeUnits[$i + 1][1];
+			    $unit2 = $timeUnits[$i + 1][1];
 			 
 			    if (($count2 = floor(($since - ($seconds * $count)) / $seconds2)) != 0) {
-			        $print .= " $count2{$name2}";
+			        $print .= " $count2{$unit2}";
 			    }
 		    }
 		    return $print;
 		    
-		// If it's been a day or more, return the date
+		# If it's been a day or more, return the date: day (without leading 0) and 3-letter month
 	    } else {
-	    	# day (without leading 0) and 3-letter month
 		    return date('j M', strtotime($dateStr));
 	    }   
 	}
@@ -108,8 +108,8 @@
 					), 
 					array(
 						'<a href="$1" class="link-tweet" target="_blank">$1</a>',
-						'$1<a class="link-hash" href="https://twitter.com/search?q=%23$2&src=hash">#$2</a>',
-						'$1<a href="link-mention" href="http://twitter.com/$2">@$2</a>'
+						'$1<a class="link-hashtag" href="https://twitter.com/search?q=%23$2&src=hash" target="_blank">#$2</a>',
+						'$1<a href="link-mention" href="http://twitter.com/$2" target="_blank">@$2</a>'
 					), 
 					$tweet
 				);
@@ -117,10 +117,12 @@
 		return $prettyTweet;
 	}
 	
-//-------------------------------------------------------------- Begin HTML output
+//-------------------------------------------------------------- Timeline HTML output
 	
+	# Open the timeline list
 	echo '<ul id="tweet-list" class="tweet-list">';
 	
+	# The tweets loop
 	foreach ($twitter_data as $tweet) {
 	
 		$retweet = $tweet['retweeted_status'];
@@ -147,14 +149,12 @@
 		$replyID = $tweet['in_reply_to_status_id'];
 		$isReply = !empty($replyID);
 
-		# Actions (uses web intents)
+		# Tweet actions (uses web intents)
 		$replyURL = 'https://twitter.com/intent/tweet?in_reply_to=' . $id;
 		$retweetURL = 'https://twitter.com/intent/retweet?tweet_id=' . $id;
-		$favoriteURL = 'https://twitter.com/intent/favorite?tweet_id=' . $id;
-		
+		$favoriteURL = 'https://twitter.com/intent/favorite?tweet_id=' . $id;	
 ?>
-			<!-- This output markup adheres to the Twitter developer display requirements (https://dev.twitter.com/terms/display-requirements) -->
-			
+			<!-- This output markup adheres to the Twitter developer display requirements (https://dev.twitter.com/terms/display-requirements) -->	
 			<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' is-retweet'; if ($isReply) echo ' is-reply'; ?>">
 				<div class="tweet-info">
 					<div class="user-info">
@@ -172,7 +172,7 @@
 				</div>
 				<blockquote class="tweet-text">
 					<?php 	
-						echo $formattedTweet; 
+						echo '<p>' . $formattedTweet . '</p>'; 
 					 
 						if ($isReply) {
 							echo '
@@ -185,25 +185,25 @@
 						if ($isRetweet) {
 							echo '
 								<span class="retweeter">
-									Retweeted by <a class="retweeter-link" href="http://twitter.com/' . $retweetingUserScreenName . '">'
-									. $retweetingUser .
-									'</a>
+									Retweeted by <a class="retweeter-link" href="http://twitter.com/' . $retweetingUserScreenName . '">' .
+									$retweetingUser
+									. '</a>
 								</span>
 							';
 						} 
-					?>	
-				
+					?>		
 				</blockquote>
 				<div class="tweet-actions">
 					<a class="action-reply" href="<?php echo $replyURL; ?>">Reply</a>
 					<a class="action-retweet<?php if ($tweet['retweeted']) echo ' visitor-retweeted'; ?>" href="<?php echo $retweetURL; ?>">Retweet</a>
 					<a class="action-favorite<?php if ($tweet['favorited']) echo ' visitor-favorited'; ?>" href="<?php echo $favoriteURL; ?>">Favorite</a>
 				</div>
-			</li>
+			</li>	
 			
-<?php }
+<?php }	# End tweets loop
 	
+	# Close the timeline list
 	echo '</ul>';
 	
-	// echo $json;
+	# echo $json;
 ?>

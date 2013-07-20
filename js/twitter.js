@@ -31,7 +31,7 @@ var twitter = {
 	},
 	
 	openStatus: function() {
-		// open the date status link in a popup window
+		// open status permalinks in a popup window
 		$('.tweet-date, .in-reply-to').on('click', function(e) {
 			e.preventDefault();
 			

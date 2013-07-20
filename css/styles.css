@@ -3,6 +3,14 @@ body {
 	margin: 0 auto;
 	width: 70%;
 }
+a {
+	color: #00acee;
+	text-decoration: none;
+}
+a:hover {
+	color: #0080A6;
+	text-decoration: underline;
+}
 .tweet-list {
 	list-style: outside none;
 	padding-left: 0;
@@ -12,10 +20,10 @@ body {
 	padding: 10px;
 }
 .tweet-list .is-retweet {
-	background: #e8ffea;
+	background: #eee;
 }
 .tweet-list .is-reply {
-	background:#fde7ff;
+	
 }
 .user-avatar {
 	float: left;
@@ -38,10 +46,12 @@ body {
 }
 .in-reply-to,
 .retweeter {
-	display: block;
-	margin: 5px 0 0;
+	
 }
 .visitor-retweeted,
 .visitor-favorited {
 	color: #999;
+}
+footer {
+	text-align: center;
 }
