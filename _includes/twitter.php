@@ -156,7 +156,7 @@
 						<a class="user-name" href="<?php echo $userAccountURL; ?>"><strong><?php echo $userName; ?></strong></a>
 						<a class="user-screenName" href="<?php echo $userAccountURL; ?>">@<?php echo $userScreenName; ?></a>
 					</p>
-				</a>
+				</div>
 				<a class="tweet-date" href="<?php echo $statusURL; ?>" target="_blank">
 					<?php echo $date; ?>
 				</a>
