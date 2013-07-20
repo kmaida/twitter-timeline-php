@@ -146,52 +146,53 @@
 		$favoriteURL = 'https://twitter.com/intent/favorite?tweet_id=' . $id;	
 ?>
 				
-			<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' is-retweet'; if ($isReply) echo ' is-reply'; ?>">
-				<div class="tweet-info">
-					<div class="user-info">
-						<a class="user-avatar-link" href="<?php echo $userAccountURL; ?>">
-							<img class="user-avatar" src="<?php echo $userAvatarURL; ?>">
-						</a>
-						<p class="user-account">
-							<a class="user-name" href="<?php echo $userAccountURL; ?>"><strong><?php echo $userName; ?></strong></a>
-							<a class="user-screenName" href="<?php echo $userAccountURL; ?>">@<?php echo $userScreenName; ?></a>
-						</p>
+		<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' is-retweet'; if ($isReply) echo ' is-reply'; ?>">
+			<div class="tweet-info">
+				<div class="user-info">
+					<a class="user-avatar-link" href="<?php echo $userAccountURL; ?>">
+						<img class="user-avatar" src="<?php echo $userAvatarURL; ?>">
 					</a>
-					<a class="tweet-date" href="<?php echo $statusURL; ?>" target="_blank">
-						<?php echo $date; ?>
-					</a>
-				</div>
-				<blockquote class="tweet-text">
-					<?php 	
-						echo '<p>' . $formattedTweet . '</p>'; 
-					 
-						if ($isReply) {
-							echo '
-								<a class="in-reply-to" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '">
-									In reply to...
-								</a>
-							';
-						}
-						
-						if ($isRetweet) {
-							echo '
-								<span class="retweeter">
-									Retweeted by <a class="retweeter-link" href="http://twitter.com/' . $retweetingUserScreenName . '">' .
-									$retweetingUser
-									. '</a>
-								</span>
-							';
-						} 
-					?>		
-				</blockquote>
-				<div class="tweet-actions">
-					<a class="action-reply" href="<?php echo $replyURL; ?>">Reply</a>
-					<a class="action-retweet<?php if ($tweet['retweeted']) echo ' visitor-retweeted'; ?>" href="<?php echo $retweetURL; ?>">Retweet</a>
-					<a class="action-favorite<?php if ($tweet['favorited']) echo ' visitor-favorited'; ?>" href="<?php echo $favoriteURL; ?>">Favorite</a>
-				</div>
-			</li>	
+					<p class="user-account">
+						<a class="user-name" href="<?php echo $userAccountURL; ?>"><strong><?php echo $userName; ?></strong></a>
+						<a class="user-screenName" href="<?php echo $userAccountURL; ?>">@<?php echo $userScreenName; ?></a>
+					</p>
+				</a>
+				<a class="tweet-date" href="<?php echo $statusURL; ?>" target="_blank">
+					<?php echo $date; ?>
+				</a>
+			</div>
+			<blockquote class="tweet-text">
+				<?php 	
+					echo '<p>' . $formattedTweet . '</p>'; 
+				 
+					if ($isReply) {
+						echo '
+							<a class="in-reply-to" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '">
+								In reply to...
+							</a>
+						';
+					}
+					
+					if ($isRetweet) {
+						echo '
+							<span class="retweeter">
+								Retweeted by <a class="retweeter-link" href="http://twitter.com/' . $retweetingUserScreenName . '">' .
+								$retweetingUser
+								. '</a>
+							</span>
+						';
+					} 
+				?>		
+			</blockquote>
+			<div class="tweet-actions">
+				<a class="action-reply" href="<?php echo $replyURL; ?>">Reply</a>
+				<a class="action-retweet<?php if ($tweet['retweeted']) echo ' visitor-retweeted'; ?>" href="<?php echo $retweetURL; ?>">Retweet</a>
+				<a class="action-favorite<?php if ($tweet['favorited']) echo ' visitor-favorited'; ?>" href="<?php echo $favoriteURL; ?>">Favorite</a>
+			</div>
+		</li>	
 			
-<?php }	# End tweets loop
+<?php 
+	}	# End tweets loop
 	
 	# Close the timeline list
 	echo '</ul>';
