@@ -75,7 +75,7 @@
 			    }
 		    }
 		 
-		    return = "$count{$unit}";
+		    return "$count{$unit}";
 		    
 		# If it's been a day or more, return the date: day (without leading 0) and 3-letter month
 	    } else {
