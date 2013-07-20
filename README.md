@@ -11,7 +11,7 @@ A while ago, Twitter did away with that whole *blogger.js* business that enabled
 
 It now takes a significant amount of effort to get a styled / customized timeline on your own site. Wading through OAuth and parsing heaps of JSON data aren't on some peoples' to-do lists when all they want is a couple of tweets to appear on their homepage. 
 
-Many creatives bite the bullet and accept the embedded tweets and timeline widgets that Twitter supplies. Others aren't so willing to surrender the ability to display creatively styled tweets, and they start learning about the Twitter API.
+Many creatives bite the bullet and accept the embedded tweets and timeline widgets that Twitter supplies. Others aren't so willing to surrender the ability to display creatively style tweets, and they start learning about the Twitter API.
 
 This framework exists to lower that barrier to entry. It's not *blogger.js*-simple anymore, but it's a place to start.
 
