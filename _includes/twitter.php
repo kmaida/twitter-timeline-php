@@ -16,10 +16,10 @@
 	
 	// Set access tokens <https://dev.twitter.com/apps/>
 	$settings = array(
-		 'oauth_access_token' => "",
-		 'oauth_access_token_secret' => "",
-		 'consumer_key' => "",
-		 'consumer_secret' => ""
+		'consumer_key' => "",
+		'consumer_secret' => "",
+		'oauth_access_token' => "",
+		'oauth_access_token_secret' => ""
 	);
 	
 	// Set API request URL and timeline variables if needed <https://dev.twitter.com/docs/api/1.1>
