@@ -53,7 +53,7 @@
 	function timeAgo($dateStr) {
 		$timestamp = strtotime($dateStr);	 
 		$day = 60 * 60 * 24;
-	    $today = time(); /* current unix time  */
+	    $today = time(); // current unix time
 	    $since = $today - $timestamp;
 	    
 	    // If it's been less than 1 day since the tweet was posted, figure out how long ago in seconds/minutes/hours
@@ -177,7 +177,7 @@
 						if ($isReply) {
 							echo '
 								<a class="in-reply-to" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '">
-									<em>In reply to...</em>
+									In reply to...
 								</a>
 							';
 						}
