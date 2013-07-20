@@ -84,7 +84,7 @@
 			        $print .= " $count2{$name2}";
 			    }
 		    }
-		    return $print . ' ago';
+		    return $print;
 		    
 		// If it's been a day or more, return the date
 	    } else {
@@ -126,8 +126,12 @@
 		$retweet = $tweet['retweeted_status'];
 		$isRetweet = !empty($retweet);
 		
-		# User
-		$user = !$isRetweet ? $tweet['user'] : $retweet['user'];
+		# Retweet - get the retweeter's name and screen name
+		$retweetingUser = $isRetweet ? $tweet['user']['name'] : null;
+		$retweetingUserScreenName = $isRetweet ? $tweet['user']['screen_name'] : null;
+		
+		# Tweet source user (could be a retweeted user and not the owner of the timeline)
+		$user = !$isRetweet ? $tweet['user'] : $retweet['user'];	
 		$userName = $user['name'];
 		$userScreenName = $user['screen_name'];
 		$userAvatarURL = stripcslashes($user['profile_image_url']);
@@ -143,7 +147,7 @@
 		$replyID = $tweet['in_reply_to_status_id'];
 		$isReply = !empty($replyID);
 
-		# Actions
+		# Actions (uses web intents)
 		$replyURL = 'https://twitter.com/intent/tweet?in_reply_to=' . $id;
 		$retweetURL = 'https://twitter.com/intent/retweet?tweet_id=' . $id;
 		$favoriteURL = 'https://twitter.com/intent/favorite?tweet_id=' . $id;
@@ -167,8 +171,28 @@
 					</a>
 				</div>
 				<blockquote class="tweet-text">
-					<?php echo $formattedTweet; ?>
-					<?php if ($isReply) echo '<a class="in-reply-to" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '"><em>In reply to...</em></a>'; ?>
+					<?php 	
+						echo $formattedTweet; 
+					 
+						if ($isReply) {
+							echo '
+								<a class="in-reply-to" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '">
+									<em>In reply to...</em>
+								</a>
+							';
+						}
+						
+						if ($isRetweet) {
+							echo '
+								<span class="retweeter">
+									Retweeted by <a class="retweeter-link" href="http://twitter.com/' . $retweetingUserScreenName . '">'
+									. $retweetingUser .
+									'</a>
+								</span>
+							';
+						} 
+					?>	
+				
 				</blockquote>
 				<div class="tweet-actions">
 					<a class="action-reply" href="<?php echo $replyURL; ?>">Reply</a>
