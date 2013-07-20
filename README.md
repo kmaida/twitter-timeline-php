@@ -7,7 +7,7 @@ A small framework to get and display an interactive Twitter timeline, implemente
 
 A while ago, Twitter did away with that whole *blogger.js* business that enabled web designers and developers to easily display a few recent tweets on their websites in whatever presentation they wished.
 
-[Version 1.1 of the Twitter API](https://dev.twitter.com/docs/api/1.1) has stricter branding guidelines for displaying [Twitter on websites](https://dev.twitter.com/docs/twitter-for-websites). Using the API to add a timeline or tweet on your site qualifies you as having created a Twitter application, which means that you're expected to adhere to the [Developer Display Requirements](https://dev.twitter.com/terms/display-requirements). 
+[Version 1.1 of the Twitter API](https://dev.twitter.com/docs/api/1.1) has stricter branding guidelines for displaying [Twitter on websites](https://dev.twitter.com/docs/twitter-for-websites). Using the API to add a timeline or tweet on your site qualifies you as having created a Twitter application, which means you're expected to adhere to the [Developer Display Requirements](https://dev.twitter.com/terms/display-requirements). 
 
 It now takes a significant amount of effort to get a styled / customized timeline on your own site. Wading through OAuth and parsing heaps of JSON data aren't on some peoples' to-do lists when all they want is a couple of tweets to appear on their homepage. 
 
@@ -17,17 +17,20 @@ This framework exists to lower that barrier to entry. It's not *blogger.js*-simp
 
 ## Features
 
-* OAuth with GET requests
-* Base markup that adheres to the [Developer Display Requirements](https://dev.twitter.com/terms/display-requirements)
+* OAuth with GET request to fetch API 1.1 URL (user_timeline by default)
+* Basic HTML markup that adheres to the [Developer Display Requirements](https://dev.twitter.com/terms/display-requirements)
 * Reply / Retweet / Favorite via [web intents](https://dev.twitter.com/docs/intents)
-* Formatting of timestamp
-* Formatting of tweet text (linking links, hashtags, mentions)
-* Detection of whether a tweet is a retweet or reply and appropriate added functionality
-* Dynamic application of CSS classes when a visitor retweets or favorites
+* Format shortform timestamp (h, m, s elapsed, date if 24+ hours ago)
+* Format tweet text (linking links, hashtags, mentions)
+* Detection if a status is a retweet or reply
+* JavaScript event handlers bound for successful visitor retweets and favorites
+* Status permalinks open in popup dialog like Twitter web intents
+* Fully customizable HTML output
+* Fully styleable with CSS
 
 ## Requirements
 
-* LAMP stack with PHP
+* Apache / PHP
 * cURL enabled
 
 ##Demo
