@@ -1,10 +1,11 @@
 body {
 	font: normal 16px/1.3 Helvetica, Arial, sans-serif;
 	margin: 0 auto;
-	width: 75%;
+	width: 70%;
 }
 .tweet-list {
 	list-style: outside none;
+	padding-left: 0;
 }
 .tweet-list li {
 	border-bottom: 1px solid #ccc;
@@ -16,16 +17,13 @@ body {
 .tweet-list .is-reply {
 	background:#fde7ff;
 }
-.user-info {
-	float: left;
-}
 .user-avatar {
 	float: left;
 	padding-right: 10px;
 }
 .user-account {
+	float: left;
 	margin: 3px 0 0;
-	overflow: hidden;
 }
 .user-name {
 	display: block;
@@ -40,6 +38,7 @@ body {
 }
 .in-reply-to {
 	display: block;
+	margin: 5px 0 0;
 }
 .visitor-retweeted,
 .visitor-favorited {

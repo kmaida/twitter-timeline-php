@@ -7,18 +7,17 @@
  * @author   Kim Maida <contact@kim-maida.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://github.com/kmaida/twitter-timeline-php
- * @credits	 Based on code from Rivers <http://stackoverflow.com/a/12939923> and James Mallison <https://github.com/J7mbo/twitter-api-php>
+ * @credits	 Based on a mish-mash of code from Rivers, Jimbo / James Mallison, and others at <http://stackoverflow.com/questions/12916539/simplest-php-example-for-retrieving-user-timeline-with-twitter-api-version-1-1>
  *
 **/
 
 if (class_exists('TwitterAPITimeline') === false) {
 	class TwitterAPITimeline
 	{
+		private $consumer_key;
+	    private $consumer_secret;
 		private $oauth_access_token;
 	    private $oauth_access_token_secret;
-	    private $consumer_key;
-	    private $consumer_secret;
-	    private $postfields;
 	    private $getfield;
 	    protected $oauth;
 	    public $url;

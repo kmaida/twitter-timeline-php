@@ -7,6 +7,7 @@
  * @author   Kim Maida <contact@kim-maida.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://github.com/kmaida/twitter-timeline-php
+ * @credits	 Thank you to <http://viralpatel.net/blogs/twitter-like-n-min-sec-ago-timestamp-in-php-mysql/> for the kickstart on the "time ago" calculations 
  *
 **/
 	
@@ -47,6 +48,53 @@
 ############################################################### 	
 	## DO SOMETHING WITH THE DATA
 	
+//-------------------------------------------------------------- Format the time(ago) and date of each tweet
+	
+	function timeAgo($dateStr) {
+		$timestamp = strtotime($dateStr);	 
+		$day = 60 * 60 * 24;
+	    $today = time(); /* current unix time  */
+	    $since = $today - $timestamp;
+	    
+	    // If it's been less than 1 day since the tweet was posted, figure out how long ago in seconds/minutes/hours
+	    if (($since / $day) < 1) {
+	    
+	    	$timeUnits = array(
+			    array(60 * 60, 'h'),
+			    array(60, 'm'),
+			    array(1, 's')
+		    );
+		    
+		    for ($i = 0, $j = count($timeUnits); $i < $j; $i++) { 
+			    $seconds = $timeUnits[$i][0];
+			    $name = $timeUnits[$i][1];
+			 
+			    if (($count = floor($since / $seconds)) != 0) {
+			        break;
+			    }
+		    }
+		 
+		    $print = "$count{$name}";
+		 
+		    if ($i + 1 < $j) {
+			    $seconds2 = $timeUnits[$i + 1][0];
+			    $name2 = $timeUnits[$i + 1][1];
+			 
+			    if (($count2 = floor(($since - ($seconds * $count)) / $seconds2)) != 0) {
+			        $print .= " $count2{$name2}";
+			    }
+		    }
+		    return $print . ' ago';
+		    
+		// If it's been a day or more, return the date
+	    } else {
+	    	# day (without leading 0) and 3-letter month
+		    return date('j M', strtotime($dateStr));
+	    }   
+	}
+	
+//-------------------------------------------------------------- Format the tweet text (links, hashtags, mentions)
+	
 	function formatTweet($tweet) {
 		$linkified = '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@';
 		$hashified = '/(^|[\n\s])#([^\s"\t\n\r<:]*)/is';
@@ -69,53 +117,51 @@
 		return $prettyTweet;
 	}
 	
-	function formatDate($dateStr) {
-		date_default_timezone_set('America/Detroit');
-		$date = date('d M y', strtotime($dateStr));
-		return $date;
-	}
+//-------------------------------------------------------------- Begin HTML output
 	
 	echo '<ul id="tweet-list" class="tweet-list">';
 	
-	// The Loop
 	foreach ($twitter_data as $tweet) {
 	
 		$retweet = $tweet['retweeted_status'];
 		$isRetweet = !empty($retweet);
 		
-		// User
+		# User
 		$user = !$isRetweet ? $tweet['user'] : $retweet['user'];
 		$userName = $user['name'];
 		$userScreenName = $user['screen_name'];
 		$userAvatarURL = stripcslashes($user['profile_image_url']);
 		$userAccountURL = 'http://twitter.com/' . $userScreenName;
 		
-		// The tweet
+		# The tweet
 		$id = $tweet['id'];
 		$formattedTweet = !$isRetweet ? formatTweet($tweet['text']) : formatTweet($retweet['text']);
 		$statusURL = 'http://twitter.com/' . $userScreenName . '/status/' . $id;
-		$date = formatDate($tweet['created_at']);
+		$date = timeAgo($tweet['created_at']);
 		
-		// Reply
+		# Reply
 		$replyID = $tweet['in_reply_to_status_id'];
 		$isReply = !empty($replyID);
 
-		// Actions
+		# Actions
 		$replyURL = 'https://twitter.com/intent/tweet?in_reply_to=' . $id;
 		$retweetURL = 'https://twitter.com/intent/retweet?tweet_id=' . $id;
 		$favoriteURL = 'https://twitter.com/intent/favorite?tweet_id=' . $id;
 		
 ?>
+			<!-- This output markup adheres to the Twitter developer display requirements (https://dev.twitter.com/terms/display-requirements) -->
 			
 			<li id="<?php echo 'tweetid-' . $id; ?>" class="tweet<?php if ($isRetweet) echo ' is-retweet'; if ($isReply) echo ' is-reply'; ?>">
 				<div class="tweet-info">
 					<div class="user-info">
-						<img class="user-avatar" src="<?php echo $userAvatarURL; ?>">
+						<a class="user-avatar-link" href="<?php echo $userAccountURL; ?>">
+							<img class="user-avatar" src="<?php echo $userAvatarURL; ?>">
+						</a>
 						<p class="user-account">
-							<strong class="user-name"><?php echo $userName; ?></strong>
+							<a class="user-name" href="<?php echo $userAccountURL; ?>"><strong><?php echo $userName; ?></strong></a>
 							<a class="user-screenName" href="<?php echo $userAccountURL; ?>">@<?php echo $userScreenName; ?></a>
 						</p>
-					</div>
+					</a>
 					<a class="tweet-date" href="<?php echo $statusURL; ?>" target="_blank">
 						<?php echo $date; ?>
 					</a>
