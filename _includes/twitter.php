@@ -66,7 +66,7 @@
 				   array(1, 's')
 			  );
 			  
-			  for ($i = 0, $j = count($timeUnits); $i < $j; $i++) { 
+			  for ($i = 0, $n = count($timeUnits); $i < $n; $i++) { 
 				   $seconds = $timeUnits[$i][0];
 				   $unit = $timeUnits[$i][1];
 			 
@@ -91,18 +91,18 @@
 		$mentionified = '/(^|[\n\s])@([^\s"\t\n\r<:]*)/is';
 		
 		$prettyTweet = preg_replace(
-					array(
-						$linkified,
-						$hashified,
-						$mentionified
-					), 
-					array(
-						'<a href="$1" class="link-tweet" target="_blank">$1</a>',
-						'$1<a class="link-hashtag" href="https://twitter.com/search?q=%23$2&src=hash" target="_blank">#$2</a>',
-						'$1<a href="link-mention" href="http://twitter.com/$2" target="_blank">@$2</a>'
-					), 
-					$tweet
-				);
+			array(
+				$linkified,
+				$hashified,
+				$mentionified
+			), 
+			array(
+				'<a href="$1" class="link-tweet" target="_blank">$1</a>',
+				'$1<a class="link-hashtag" href="https://twitter.com/search?q=%23$2&src=hash" target="_blank">#$2</a>',
+				'$1<a href="link-mention" href="http://twitter.com/$2" target="_blank">@$2</a>'
+			), 
+			$tweet
+		);
 		
 		return $prettyTweet;
 	}
@@ -197,5 +197,5 @@
 	# Close the timeline list
 	echo '</ul>';
 	
-	# echo $json;
+	# echo $json; // Uncomment this line to view the entire JSON array. Helpful: http://www.freeformatter.com/json-formatter.html
 ?>
