@@ -44,7 +44,10 @@ a:hover {
 	margin: 0;
 	padding: 10px 0;
 }
-.in-reply-to,
+.tweet-details {
+	
+}
+.link-reply-to,
 .retweeter {
 	font-style: italic;
 }

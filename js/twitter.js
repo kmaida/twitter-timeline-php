@@ -22,8 +22,8 @@ var twitter = {
 	
 	favorite: function() {
 		// add a class to the status li when a visitor successfully favorites a tweet
-		twttr.events.bind('favorite', function(event) {
-			var favorited_tweet_id = event.data.tweet_id,
+		twttr.events.bind('favorite', function(e) {
+			var favorited_tweet_id = e.data.tweet_id,
 				$thisTweet = twitter.$list.find('#tweetid-' + favorited_tweet_id);
 			
 			$thisTweet.addClass('visitor-favorited');

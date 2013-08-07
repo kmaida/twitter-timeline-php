@@ -169,9 +169,11 @@
 				<?php 	
 					echo '<p>' . $formattedTweet . '</p>'; 
 				 
+					echo '<p class="tweet-details">';
+					
 					if ($isReply) {
 						echo '
-							<a class="in-reply-to permalink-status" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '">
+							<a class="link-reply-to permalink-status" href="http://twitter.com/' . $tweet['in_reply_to_screen_name'] . '/status/' . $replyID . '">
 								In reply to...
 							</a>
 						';
@@ -180,12 +182,14 @@
 					if ($isRetweet) {
 						echo '
 							<span class="retweeter">
-								Retweeted by <a class="retweeter-link" href="http://twitter.com/' . $retweetingUserScreenName . '">' .
+								Retweeted by <a class="link-retweeter" href="http://twitter.com/' . $retweetingUserScreenName . '">' .
 								$retweetingUser
 								. '</a>
 							</span>
 						';
-					} 
+					}
+					
+					echo '<a class="link-details permalink-status" href="' . $statusURL . '" target="_blank">Details</a></p>';
 				?>		
 			</blockquote>
 			<div class="tweet-actions">
