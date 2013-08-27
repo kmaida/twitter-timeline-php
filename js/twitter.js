@@ -5,9 +5,11 @@ var twitter = {
 	$list: $('#tweet-list'),
 	
 	init: function() {
-		twitter.retweet();
-		twitter.favorite();
-		twitter.openStatus();
+		twttr.ready(function(twttr) {
+			twitter.retweet();
+			twitter.favorite();
+			twitter.openStatus();
+		});
 	},
 	
 	retweet: function() {
