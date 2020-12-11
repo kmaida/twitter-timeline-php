@@ -41,7 +41,7 @@
 	$twitter = new TwitterAPITimeline($settings);
 	
 	$json = $twitter->setGetfield($getfield)	// Note: Set the GET field BEFORE calling buildOauth()
-				  	->buildOauth($url, $requestMethod)
+				  	->buildOauth($url)
 				 	->performRequest();
 				 			
 	$twitter_data = json_decode($json, true);	// Create an array with the fetched JSON data
